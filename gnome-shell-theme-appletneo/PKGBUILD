@@ -1,0 +1,24 @@
+pkgname=gnome-shell-theme-appletneo-git
+pkgver=4.be54832
+pkgrel=1
+pkgdesc="Appletneo OS gnome-shell theme"
+arch=('any')
+url="https://github.com/naman1421/gnome-shell-theme-appletneo.git"
+groups=('gnome-shell-extensions')
+license=('CCPL:by-nc-sa')
+depends=('gnome-shell')
+source=('git+https://github.com/naman1421/gnome-shell-theme-appletneo.git')
+md5sums=('SKIP')
+
+pkgver() {
+  cd $srcdir/gnome-shell-theme-appletneo
+  echo $(git rev-list --count master).$(git rev-parse --short master)
+}
+
+package() {
+    cd $srcdir/gnome-shell-theme-appletneo
+    
+    mkdir -p ${pkgdir}/usr/share/themes/Appletneo
+    cp -r gnome-shell ${pkgdir}/usr/share/themes/Appletneo/
+    chmod -R 755 ${pkgdir}/usr/share/themes/Appletneo
+}
